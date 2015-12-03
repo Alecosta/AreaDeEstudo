@@ -88,7 +88,7 @@ type
 
 constructor TOldCustomer.Create(CustID: Integer);
 begin
-  FCustomerID := CustomerID;
+  FCustomerID := CustID;
   FName := 'An Old_Customer';
   with FDOB do begin
     Day := 1;

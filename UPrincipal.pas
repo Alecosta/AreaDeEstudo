@@ -22,6 +22,7 @@ type
     Edit1: TEdit;
     Edit2: TEdit;
     btnSingleton2: TButton;
+    Button1: TButton;
     procedure btnSingletonClick(Sender: TObject);
     procedure btnAdapterClick(Sender: TObject);
     procedure btnSingleton2Click(Sender: TObject);

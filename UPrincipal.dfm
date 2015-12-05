@@ -128,4 +128,12 @@ object Form1: TForm1
     TabOrder = 8
     OnClick = btnSingleton2Click
   end
+  object Button1: TButton
+    Left = 400
+    Top = 40
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 9
+  end
 end

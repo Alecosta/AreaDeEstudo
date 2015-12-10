@@ -1,3 +1,5 @@
+// fontes de consulta: http://balaiotecnologico.blogspot.com.br/2009/07/design-patterns-com-delphi-abstract.html
+
 unit AbstractFactory;
 
 interface
@@ -5,8 +7,10 @@ uses
  Classes,Buttons,StdCtrls,Graphics;
 
 Type
+  TTipoColor = (tcRed, tcBlue);
   TOAbstractFactory = class(TObject)
   public
+    class function GetTipoColor(cTipo:TTipoColor):TOAbstractFactory;
     constructor Create;
     destructor Destroy; override;
 
@@ -48,12 +52,24 @@ begin
   inherited;
 end;
 
+class function TOAbstractFactory.GetTipoColor(
+  cTipo: TTipoColor): TOAbstractFactory;
+begin
+   result := nil;
+   case cTipo of
+     tcRed  : Result := TORedFactory.Create;
+     tcBlue : Result := TOBlueFactory.Create;
+   end;
+end;
+
 { TORedFactory }
 
 function TORedFactory.CreateEdit(AOwner: TComponent): TEdit;
 begin
-  TEdit(AOwner).Color := clRed;
-  result := TEdit(AOwner);
+
+  result := TEdit.Create(AOwner);
+  TEdit(result).color := clRed;
+
 end;
 
 function TORedFactory.CreateLabel(AOwner: TComponent): TLabel;
@@ -70,7 +86,8 @@ end;
 
 function TOBlueFactory.CreateEdit(AOwner: TComponent): TEdit;
 begin
-  TEdit(AOwner).Color := clBlue;
+  result := TEdit.Create(AOwner);
+  TEdit(result).color := clBlue;
 end;
 
 function TOBlueFactory.CreateLabel(AOwner: TComponent): TLabel;

@@ -9,6 +9,7 @@ uses
 type
   TForm2 = class(TForm)
     Button1: TButton;
+    ComboBox1: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
@@ -46,22 +47,26 @@ var
   meuEdit : TEdit;
 begin
 
-  objeto := TOAbstractFactory.GetTipoColor(tcBlue);
-
+  case ComboBox1.ItemIndex of
+   0: objeto := TOAbstractFactory.GetTipoColor(tcRed);
+   1: objeto := TOAbstractFactory.GetTipoColor(tcBlue);
+  end;
+  
   meuEdit :=  objeto.CreateEdit(self );
   with  meuEdit do
   begin
     Parent := Form2;
     Name := 'Edit1';
-    Left := 72;
-    Top := 184 ;
+    Left := 168;
+    Top := 24 ;
     Width := 121;
     Height := 21 ;
     TabOrder := 1 ;
     Text := 'Edit1';
   end;
-  
-  sleep(500);
+
+  Application.ProcessMessages;
+  sleep(1000);
 
   meuEdit.Free;
   objeto.Free;
